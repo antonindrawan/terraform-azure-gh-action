@@ -21,7 +21,7 @@ az storage container create -n tfstatedevops --account-name antonterraformstorag
 
 ### Create Azure Service Principals
 
-Create two azure service principals:
+1. Create two azure service principals:
 
 * Azure-GH-contrib
 * Azure-GH-readonly
@@ -35,16 +35,44 @@ Assign Role `Reader and Data Access` to the azure principals
 * Select members: Azure-GH-contrib and Azure-GH-readonly
 * Review + Assign
 
-### Try it out
+2. Add federated credentials to each service principal
+
+https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Clinux#use-the-azure-login-action-with-openid-connect
+
+Within each App (Service Principal), go to ``Certificates & secrets``, in the ``federated credentials`` tab, select ``Add credential``.
+
+Select the credential scenario ``GitHub Actions deploying Azure resources``. 
+
+For the ``Azure-GH-contrib`` identity create 1 federated credential as follows:
+
+* Set ``Entity Type`` to ``Environment`` and use the ``production`` environment name.
+
+For the ``Azure-GH-readonly`` identity create 2 federated credentials as follows:
+
+* Set ``Entity Type`` to ``Pull Request``.
+* Set ``Entity Type`` to ``Branch`` and use the ``main`` branch name.
+
+
+### Prepare GitHub Environment
+
+Follow step 2 in Getting Started to create `production` GitHub environment because the 
+`terraform-apply` job is only run on `production.`
+https://github.com/Azure-Samples/terraform-github-actions/blob/main/README.md
+
+### 
+
+## Try it out
 
 Make a pull request to the repository and see the GitHub Action in action.
+The GitHu
+
 
 ### Clean up resources
 
 Destroy the created azure resources created by terraform
+
     terraform plan -destroy -out=destroy.tfplan
 
 Destroy the azure resource group where the storage account is created. It can later be re-created for practicing.
 
     az group delete -n rg-terraform-azure-gh-action-states
-
