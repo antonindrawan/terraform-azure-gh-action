@@ -70,6 +70,7 @@ Create a commit on the main branch or make a pull request to the main branch. Se
 Destroy the created azure resources created by terraform
 
     terraform plan -destroy -out=destroy.tfplan
+    terraform apply destroy.tfplan
 
 Destroy the azure resource group where the storage account is created. It can later be re-created for practicing.
 
