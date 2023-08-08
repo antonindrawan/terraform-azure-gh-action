@@ -1,4 +1,4 @@
-# Showcase deployment of Azure resources using Terraform and GitHub Actions
+# Try a deployment of Azure resources using Terraform and GitHub Actions
 
 Based on 
 
@@ -9,7 +9,7 @@ Based on
 ## Prerequisites
 ### Terraform must store state for managed infrastructure and configuration in a storage account
 ```
-# Create a Resource Group
+# Create a resource Group for the storage account
 az group create -n rg-terraform-azure-gh-action-states -l westeurope
  
 # Create Storage Account: 
@@ -59,12 +59,10 @@ Follow step 2 in Getting Started to create `production` GitHub environment becau
 `terraform-apply` job is only run on `production.`
 https://github.com/Azure-Samples/terraform-github-actions/blob/main/README.md
 
-### 
 
 ## Try it out
 
-Make a pull request to the repository and see the GitHub Action in action.
-The GitHu
+Create a commit on the main branch or make a pull request to the main branch. See the GitHub Action in action.
 
 
 ### Clean up resources
