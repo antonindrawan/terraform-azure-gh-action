@@ -2,6 +2,8 @@ name: 'Terrafom Unit Tests'
 
 on:
   push:
+    paths-ignore:
+      - 'README.md'
 
 jobs:
   terraform-unit-tests:
